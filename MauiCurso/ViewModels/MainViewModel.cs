@@ -13,22 +13,36 @@ namespace MauiCurso.ViewModels
     public partial class MainViewModel : ObservableObject
     {
         [ObservableProperty]
-            private int count;
+        string numero1;
+
+        [ObservableProperty]
+        string numero2;
+
+        [ObservableProperty]
+        string resultado;
 
         [RelayCommand]
-        public void Sumar() 
+        void Sumar()
         {
-            Count++;
+            if (double.TryParse(Numero1, out double n1) &&
+                double.TryParse(Numero2, out double n2))
+            {
+                Resultado = (n1 + n2).ToString();
+            }
+            else
+            {
+                Resultado = "Valores inválidos";
+            }
         }
-        
-        
 
-        
-        
-        
 
-        
-        
+
+
+
+
+
+
+
     }
 
 }

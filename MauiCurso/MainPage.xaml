@@ -3,43 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiCurso.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+    <VerticalStackLayout Padding="20" Spacing="15">
 
-            <Label
-                Text="Hola mundo!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+        <Entry Placeholder="Número 1"
+               Keyboard="Numeric"
+               Text="{Binding Numero1}" />
 
-            <Label
-                Text="Bienvenido a &#10;.NET Multi-platform App UI"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Bienvenido a dot net Multi platform App U I" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="{Binding Count}" 
-                SemanticProperties.Hint="Clics"
-                Command="{Binding SumarCommand}"
-                HorizontalOptions="Center" 
                 
-                />
-            <Slider
-                Minimum="0"
-                Maximum="100"
-                Value="{Binding Count}"
-                SemanticProperties.Hint="Desliza para cambiar el valor" 
-                HorizontalOptions="Fill" />
-            
-        </VerticalStackLayout>
-    </ScrollView>
+        <Entry Placeholder="dgdfgdfgdfgfdg"
+                Keyboard="Numeric" 
+                Text="bnjdsbdjsdjsd"/>
+        
+        <Label Text="Resultado"
+             FontSize="24"
+             HorizontalOptions="Center" />
+        
+        <Label Text="{Binding Resultado}"
+               FontSize="24"
+               HorizontalOptions="Center" />
+
+        <Button Text="Sumar"
+                Command="{Binding SumarCommand}" />
+
+        
+    </VerticalStackLayout>
 
 </ContentPage>
