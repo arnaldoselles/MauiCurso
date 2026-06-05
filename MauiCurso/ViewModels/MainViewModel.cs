@@ -24,16 +24,16 @@ namespace MauiCurso.ViewModels
         }
 
         [ObservableProperty]
-        private string nombre;
+        private string nombre= string.Empty;
 
         [ObservableProperty]
-        private string apellidos;
+        private string apellidos=string.Empty;
 
         [ObservableProperty]
-        private string edad;
+        private string edad= string.Empty;
 
         [ObservableProperty]
-        private string mensajeError;
+        private string mensajeError= string.Empty;
 
         [ObservableProperty]
         private bool hayError;
@@ -60,22 +60,36 @@ namespace MauiCurso.ViewModels
                 return;
             }
 
-            // Si todo está bien, limpiamos el error
-            HayError = false;
-
-            // Guardamos la persona
-            personaService.ObjetoPersona = new Persona
+            // Crear persona y guardar en BD
+            var persona = new Persona
             {
                 Nombre = Nombre,
                 Apellidos = Apellidos,
-                Edad     = edadNum
+                Edad = edadNum
             };
 
-            await Shell.Current.GoToAsync(nameof(DetallesPage));
-            //  LIMPIAR LOS ENTRYS
-            Nombre = string.Empty;
-            Apellidos = string.Empty;
-            Edad = string.Empty;
+            try
+            {
+                await personaService.GuardarPersonaAsync(persona);
+                HayError = false;
+
+                // Limpiar campos
+                Nombre = string.Empty;
+                Apellidos = string.Empty;
+                Edad = string.Empty;
+
+                // Navegar a detalles
+                await Shell.Current.GoToAsync(nameof(DetallesPage));
+            }
+            catch (Exception ex)
+            {
+                MostrarError($"Error al guardar: {ex.Message}");
+            }
+
+            ////  LIMPIAR LOS ENTRYS
+            //Nombre = string.Empty;
+            //Apellidos = string.Empty;
+            //Edad = string.Empty;
         }
 
         private void MostrarError(string mensaje)

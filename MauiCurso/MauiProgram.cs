@@ -33,6 +33,7 @@ namespace MauiCurso
 
             //Servicios
             builder.Services.AddSingleton<PersonaDataService>();
+            builder.Services.AddSingleton<PersonaDatabaseService>();
 
             return builder.Build();
         }
