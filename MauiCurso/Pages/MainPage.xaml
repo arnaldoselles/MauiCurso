@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiCurso.MainPage">
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <Label Text="Página Principal" FontSize="24" HorizontalOptions="Center" />
+               
+         <Label Text="Datos de la Persona"
+               FontSize="28"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <Border StrokeShape="RoundRectangle 12"
+            Background="#F0F0F0"
+            Padding="10">
+            <Entry Placeholder="Nombre"
+               Text="{Binding Nombre}"
+               BackgroundColor="Transparent" />
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 12"
+            Background="#F0F0F0"
+            Padding="10">
+            <Entry Placeholder="Apellidos"
+               Text="{Binding Apellidos}"
+               BackgroundColor="Transparent" />
+        </Border>
+
+        <Border StrokeShape="RoundRectangle 12"
+            Background="#F0F0F0"
+            Padding="10">
+            <Entry Placeholder="Edad"
+               Text="{Binding Edad}"
+               Keyboard="Numeric"
+               BackgroundColor="Transparent" />
+        </Border>
+
+        <Label Text="{Binding MensajeError}"
+               TextColor="Red"
+               FontSize="14"
+               IsVisible="{Binding HayError}" />
+
+        <Button Text="Enviar a Detalles"
+                Command="{Binding IrADetallesCommand}"
+                BackgroundColor="#0077FF"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50" />
+
+        <Button Text="Ir a Otra"
+        Command="{Binding IrAOtraCommand}" 
+        HorizontalOptions="Center"/>
+
+
+    </VerticalStackLayout>
+
+</ContentPage>

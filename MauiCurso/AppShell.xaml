@@ -7,7 +7,7 @@
     Title="MauiCurso">
 
     <ShellContent
-        Title="Estudiando net MAUI"
+        Title="Navegacion"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 

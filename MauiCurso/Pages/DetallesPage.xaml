@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiCurso.DetallesPage">
+
+    <VerticalStackLayout Padding="25" Spacing="20">
+
+        <Label Text="Detalles de la Persona"
+               FontSize="28"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <Frame BackgroundColor="#F0F0F0"
+               CornerRadius="15"
+               Padding="20">
+
+            <VerticalStackLayout Spacing="10">
+
+                <Label Text="Nombre:" FontAttributes="Bold" />
+                <Label Text="{Binding Persona.Nombre}" FontSize="18" />
+
+                <Label Text="Apellidos:" FontAttributes="Bold" />
+                <Label Text="{Binding Persona.Apellidos}" FontSize="18" />
+
+                <Label Text="Edad:" FontAttributes="Bold" />
+                <Label Text="{Binding Persona.Edad}" FontSize="18" />
+
+                <Button Text="Volver"
+                  Command="{Binding VolverCommand}" 
+                  HorizontalOptions="Center"/>
+
+            </VerticalStackLayout>
+
+        </Frame>
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,4 +1,6 @@
-﻿using MauiCurso.ViewModels;
+﻿using MauiCurso.Pages;
+using MauiCurso.Services;
+using MauiCurso.ViewModels;
 using Microsoft.Extensions.Logging;
 
 namespace MauiCurso
@@ -19,11 +21,18 @@ namespace MauiCurso
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-            // Registro de ViewModels
-            builder.Services.AddTransient<MainViewModel>();
+            // Páginas
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddTransient<DetallesPage>();
+            builder.Services.AddTransient<OtherPage>();
 
-            // Registro de Pages
-            builder.Services.AddTransient<MainPage>();
+            // ViewModels
+            builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddTransient<DetallesViewModel>();
+            builder .Services.AddTransient<OtherViewModel>();
+
+            //Servicios
+            builder.Services.AddSingleton<PersonaDataService>();
 
             return builder.Build();
         }
