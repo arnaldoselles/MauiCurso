@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiCurso.DetallesPage"
+             Title="Lista de Personas">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="15">
+
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Spacing="15">
+            <Label Text="Personas Guardadas"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Button Text="Recargar"
+                    Command="{Binding CargarPersonasCommand}"
+                    BackgroundColor="#0077FF"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Padding="15" />
+
+            <Label Text="No hay personas guardadas"
+                   FontSize="16"
+                   TextColor="Gray"
+                   HorizontalOptions="Center"
+                   IsVisible="{Binding NoHayPersonas}" />
+        </VerticalStackLayout>
+
+        <!-- Lista con scroll -->
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding Personaslist}" 
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="15"
+                           Padding="15"
+                           Margin="0,5"
+                           BackgroundColor="#F5F5F5"
+                           BorderColor="#E0E0E0">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="{Binding Nombre, StringFormat='👤 {0}'}"
+                                   FontSize="18"
+                                   FontAttributes="Bold" />
+                            <Label Text="{Binding Apellidos, StringFormat='Apellidos: {0}'}"
+                                   FontSize="16" />
+                            <Label Text="{Binding Edad, StringFormat='Edad: {0} años'}"
+                                   FontSize="16" />
+                            
+                            <Button Text="Eliminar"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarPersonaCommand}"
+                                    CommandParameter="{Binding Id}"
+                                    BackgroundColor="#FF6B6B"
+                                    TextColor="White"
+                                    CornerRadius="8"
+                                    Padding="10"
+                                    Margin="0,5,0,0" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Footer -->
+        <Button Grid.Row="2"
+                Text="Volver"
+                Command="{Binding VolverCommand}"
+                BackgroundColor="#666666"
+                TextColor="White"
+                CornerRadius="10"
+                Padding="15" />
+
+    </Grid>
+
+</ContentPage>
