@@ -1,57 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiCurso.MainPage">
+             x:Class="MauiCurso.MainPage"
+             BackgroundImageSource="background.png">
 
     <VerticalStackLayout Padding="20" Spacing="20">
-        <Label Text="Página Principal" FontSize="24" HorizontalOptions="Center" />
                
-         <Label Text="Datos de la Persona"
+        <Label Text="Datos del himno"
                FontSize="28"
                FontAttributes="Bold"
+               TextColor="Chocolate"
                HorizontalOptions="Center" />
 
-        <Border StrokeShape="RoundRectangle 12"
-            Background="#F0F0F0"
-            Padding="10">
-            <Entry Placeholder="Nombre"
-               Text="{Binding Nombre}"
-               BackgroundColor="Transparent" />
-        </Border>
+        <Frame CornerRadius="10" 
+               Padding="10" 
+               BorderColor="Transparent">
+            <Entry Placeholder="Número del himno"
+                   Text="{Binding Numero}"
+                   Keyboard="Numeric"
+                   BackgroundColor="#F0F0F0" />
+        </Frame>
 
-        <Border StrokeShape="RoundRectangle 12"
-            Background="#F0F0F0"
-            Padding="10">
-            <Entry Placeholder="Apellidos"
-               Text="{Binding Apellidos}"
-               BackgroundColor="Transparent" />
-        </Border>
+        <Frame CornerRadius="10" 
+               Padding="10" 
+               BorderColor="Transparent">
+            <Entry Placeholder="Nombre del himno"
+                   Text="{Binding Nombre}"
+                   BackgroundColor="#F0F0F0" />
+        </Frame>
 
-        <Border StrokeShape="RoundRectangle 12"
-            Background="#F0F0F0"
-            Padding="10">
-            <Entry Placeholder="Edad"
-               Text="{Binding Edad}"
-               Keyboard="Numeric"
-               BackgroundColor="Transparent" />
-        </Border>
+        <Frame CornerRadius="10" 
+               Padding="10" 
+               BorderColor="Transparent">
+            <Editor Placeholder="Letra del himno"
+                    Text="{Binding Letra}"
+                    BackgroundColor="#F0F0F0"
+                    HeightRequest="150" />
+        </Frame>
 
         <Label Text="{Binding MensajeError}"
                TextColor="Red"
                FontSize="14"
                IsVisible="{Binding HayError}" />
 
-        <Button Text="Enviar a Detalles"
+        <Button Text="Agregar himno"
                 Command="{Binding IrADetallesCommand}"
+                HorizontalOptions="Center"
                 BackgroundColor="#0077FF"
                 TextColor="White"
                 CornerRadius="10"
-                HeightRequest="50" />
+                HeightRequest="50" 
+                FontAttributes="Bold"
+                FontSize="16"
+        />
 
-        <Button Text="Ir a Otra"
-        Command="{Binding IrAOtraCommand}" 
-        HorizontalOptions="Center"/>
-
+        <Button Text="←Volver al Índice"
+        Command="{Binding VolverAListaCommand}"
+        HorizontalOptions="Center"
+        BackgroundColor="#0077FF"
+        TextColor="White"
+        CornerRadius="10"
+        HeightRequest="50" 
+        FontAttributes="Bold"
+        FontSize="16"/>
 
     </VerticalStackLayout>
 
