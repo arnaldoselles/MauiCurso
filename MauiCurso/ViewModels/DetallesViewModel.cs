@@ -1,49 +1,46 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiCurso.Models;
+using MauiCurso.Pages;
 using MauiCurso.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MauiCurso.ViewModels
 {
-    
     public partial class DetallesViewModel : ObservableObject 
     {
-        private readonly PersonaDataService _personaService;
+        private readonly HimnoDataService _himnoService;
+        private List<Himno> _todoLosHimnos = new();
 
         [ObservableProperty]
-        private ObservableCollection<Persona> personaslist = new();
+        private ObservableCollection<Himno> himnos = new();
 
         [ObservableProperty]
-        private bool noHayPersonas = true;
+        private bool noHayHimnos = true;
 
         [ObservableProperty]
-        private Persona persona;
+        private string textoBusqueda = string.Empty;
 
-        public DetallesViewModel(PersonaDataService personaService)
+        [ObservableProperty]
+        private Himno? himnoSeleccionado;
+
+        public DetallesViewModel(HimnoDataService himnoService)
         {
-            _personaService = personaService;
+            _himnoService = himnoService;
+        }
+
+        partial void OnTextoBusquedaChanged(string value)
+        {
+            FiltrarHimnos();
         }
 
         [RelayCommand]
-        public async Task CargarPersonas()
+        public async Task CargarHimnos()
         {
             try
             {
-                var listaPersonas = await _personaService.ObtenerPersonasAsync();
-
-                Personaslist.Clear();
-                foreach (var persona in listaPersonas)
-                {
-                    Personaslist.Add(persona);
-                }
-
-                NoHayPersonas = Personaslist.Count == 0;
+                _todoLosHimnos = await _himnoService.ObtenerHimnosAsync();
+                FiltrarHimnos();
             }
             catch (Exception ex)
             {
@@ -51,13 +48,46 @@ namespace MauiCurso.ViewModels
             }
         }
 
+        private void FiltrarHimnos()
+        {
+            Himnos.Clear();
+
+            var filtrados = _todoLosHimnos;
+
+            if (!string.IsNullOrWhiteSpace(TextoBusqueda))
+            {
+                var busqueda = TextoBusqueda.ToLower().Trim();
+
+                filtrados = _todoLosHimnos.Where(h =>
+                    h.Nombre.ToLower().Contains(busqueda) ||
+                    h.Numero.ToString().Contains(busqueda)
+                ).ToList();
+            }
+
+            foreach (var himno in filtrados)
+            {
+                Himnos.Add(himno);
+            }
+
+            NoHayHimnos = Himnos.Count == 0;
+        }
+
         [RelayCommand]
-        public async Task EliminarPersona(int id)
+        public async Task VerDetalleHimno(Himno himno)
+        {
+            if (himno is not null)
+            {
+                await Shell.Current.GoToAsync($"detallehimno?himnoId={himno.Id}");
+            }
+        }
+
+        [RelayCommand]
+        public async Task EliminarHimno(int id)
         {
             try
             {
-                await _personaService.EliminarPersonaAsync(id);
-                await CargarPersonasCommand.ExecuteAsync(null);
+                await _himnoService.EliminarHimnoAsync(id);
+                await CargarHimnosCommand.ExecuteAsync(null);
             }
             catch (Exception ex)
             {
@@ -66,11 +96,16 @@ namespace MauiCurso.ViewModels
         }
 
         [RelayCommand]
-        private async Task Volver()
+        private async Task IrANuevoHimno()
         {
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync(nameof(MainPage));
+            //await Shell.Current.GoToAsync("..");
         }
 
-       
+        [RelayCommand]
+        public void LimpiarBusqueda()
+        {
+            TextoBusqueda = string.Empty;
+        }
     }
 }

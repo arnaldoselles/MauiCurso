@@ -8,6 +8,7 @@ public partial class DetallesPage : ContentPage
     {
         InitializeComponent();
         BindingContext = vm;   //SIN ESTO LA VISTA NO VE EL VIEWMODEL
+        
     }
 
     protected override async void OnAppearing()
@@ -16,7 +17,7 @@ public partial class DetallesPage : ContentPage
         // Cargar personas cada vez que se muestra la página
         if (BindingContext is DetallesViewModel vm)
         {
-            await vm.CargarPersonasCommand.ExecuteAsync(null);
+            await vm.CargarHimnosCommand.ExecuteAsync(null);
         }
     }
 }

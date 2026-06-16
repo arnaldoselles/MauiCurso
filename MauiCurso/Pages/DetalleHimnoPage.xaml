@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiCurso.Pages.DetalleHimnoPage"
+             BackgroundImageSource="background.png">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="20">
+
+        <!-- HEADER -->
+        <Frame Grid.Row="0"
+               
+               CornerRadius="15"
+               Padding="15"
+               HasShadow="True">
+            <VerticalStackLayout Spacing="5">
+                <Label Text="{Binding HimnoSeleccionado.Numero, StringFormat='Himno #{0}'}"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="Chocolate" />
+
+                <Label Text="{Binding HimnoSeleccionado.Nombre}"
+                       FontSize="25"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="Chocolate" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- LETRA DEL HIMNO -->
+        <ScrollView Grid.Row="1">
+            <Frame BackgroundColor="White"
+                   CornerRadius="15"
+                   Padding="20"
+                   HasShadow="True"
+                   BorderColor="#D6C7A1">
+                <Label Text="{Binding HimnoSeleccionado.Letra}"
+                       FontSize="17"
+                       LineBreakMode="WordWrap"
+                       TextColor="#3A2F1B" />
+            </Frame>
+        </ScrollView>
+
+        <!-- BOTÓN VOLVER -->
+        <Frame Grid.Row="2"
+               BackgroundColor="Transparent"
+               Padding="0">
+            <Button Text="←Volver al índice"
+                    Command="{Binding VolverCommand}"
+                    BackgroundColor="#0077FF"
+                    TextColor="White"
+                    HorizontalOptions="Center"
+                    CornerRadius="12"
+                    Padding="15"
+                    FontAttributes="Bold"
+                    FontSize="16" />
+        </Frame>
+
+    </Grid>
+
+</ContentPage>

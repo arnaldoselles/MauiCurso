@@ -10,6 +10,7 @@ namespace MauiCurso
         {
             InitializeComponent();
             BindingContext = vm;
+            
         }
         
        

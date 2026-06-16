@@ -1,39 +1,30 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MauiCurso.Models;
-using MauiCurso.Pages;
 using MauiCurso.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MauiCurso.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
-        private readonly PersonaDataService personaService;
+        private readonly HimnoDataService _himnoService;
 
-        public MainViewModel(PersonaDataService personaService)
+        public MainViewModel(HimnoDataService himnoService)
         {
-            this.personaService = personaService;
+            _himnoService = himnoService;
         }
 
         [ObservableProperty]
-        private string nombre= string.Empty;
+        private string numero = string.Empty;
 
         [ObservableProperty]
-        private string apellidos=string.Empty;
+        private string nombre = string.Empty;
 
         [ObservableProperty]
-        private string edad= string.Empty;
+        private string letra = string.Empty;
 
         [ObservableProperty]
-        private string mensajeError= string.Empty;
+        private string mensajeError = string.Empty;
 
         [ObservableProperty]
         private bool hayError;
@@ -42,41 +33,47 @@ namespace MauiCurso.ViewModels
         private async Task IrADetalles()
         {
             // Validación
+            if (string.IsNullOrWhiteSpace(Numero))
+            {
+                MostrarError("El número del himno no puede estar vacío");
+                return;
+            }
+
+            if (!int.TryParse(Numero, out int numeroHimno) || numeroHimno <= 0)
+            {
+                MostrarError("El número debe ser un número mayor que 0");
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(Nombre))
             {
-                MostrarError("El nombre no puede estar vacío");
+                MostrarError("El nombre del himno no puede estar vacío");
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(Apellidos))
+            if (string.IsNullOrWhiteSpace(Letra))
             {
-                MostrarError("Los apellidos no pueden estar vacíos");
+                MostrarError("La letra del himno no puede estar vacía");
                 return;
             }
 
-            if (!int.TryParse(Edad, out int edadNum) || edadNum <= 0)
+            // Crear himno y guardar en BD
+            var himno = new Himno
             {
-                MostrarError("La edad debe ser un número mayor que 0");
-                return;
-            }
-
-            // Crear persona y guardar en BD
-            var persona = new Persona
-            {
-                Nombre = Nombre,
-                Apellidos = Apellidos,
-                Edad = edadNum
+                Numero = numeroHimno,
+                Nombre = Nombre.Trim(),
+                Letra = Letra.Trim()
             };
 
             try
             {
-                await personaService.GuardarPersonaAsync(persona);
+                await _himnoService.GuardarHimnoAsync(himno);
                 HayError = false;
 
                 // Limpiar campos
+                Numero = string.Empty;
                 Nombre = string.Empty;
-                Apellidos = string.Empty;
-                Edad = string.Empty;
+                Letra = string.Empty;
 
                 // Navegar a detalles
                 await Shell.Current.GoToAsync(nameof(DetallesPage));
@@ -85,11 +82,6 @@ namespace MauiCurso.ViewModels
             {
                 MostrarError($"Error al guardar: {ex.Message}");
             }
-
-            ////  LIMPIAR LOS ENTRYS
-            //Nombre = string.Empty;
-            //Apellidos = string.Empty;
-            //Edad = string.Empty;
         }
 
         private void MostrarError(string mensaje)
@@ -99,14 +91,15 @@ namespace MauiCurso.ViewModels
         }
 
         [RelayCommand]
-        private async Task IrAOtra()
+        private async Task VolverALista()
         {
-            
-            await Shell.Current.GoToAsync(nameof(OtherPage));
+            HayError = false;
+            await Shell.Current.GoToAsync("..");
+            //await Shell.Current.GoToAsync(nameof(DetallesPage));
         }
 
 
-    }
 
+    }
 }
 

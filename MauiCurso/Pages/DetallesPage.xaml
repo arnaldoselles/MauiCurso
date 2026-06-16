@@ -2,34 +2,62 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiCurso.DetallesPage"
-             Title="Lista de Personas">
+             BackgroundImageSource="background.png"
+             >
 
-    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="15">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="20">
 
         <!-- Header -->
-        <VerticalStackLayout Grid.Row="0" Spacing="15">
-            <Label Text="Personas Guardadas"
-                   FontSize="28"
+        <VerticalStackLayout Grid.Row="0" Spacing="30">
+            <Label Text="Indice"
+                   FontSize="35"
                    FontAttributes="Bold"
-                   HorizontalOptions="Center" />
+                   HorizontalOptions="Center" 
+                   TextColor="Chocolate"
+                   />
 
-            <Button Text="Recargar"
-                    Command="{Binding CargarPersonasCommand}"
+            <!-- Buscador -->
+            <Frame CornerRadius="12" 
+                   Padding="0" 
+                   BorderColor="Transparent"
+                   BackgroundColor="White"
+                   HasShadow="True">
+                <Grid ColumnDefinitions="*,Auto" Padding="10" ColumnSpacing="10">
+                    <Entry Grid.Column="0"
+                           Placeholder="Buscar himno por nombre o número..."
+                           Text="{Binding TextoBusqueda}"
+                           BackgroundColor="Transparent"
+                           FontSize="14" />
+                    <Button Grid.Column="1"
+                            Text="X"
+                            Command="{Binding LimpiarBusquedaCommand}"
+                            BackgroundColor="Transparent"
+                            TextColor="Chocolate"
+                            WidthRequest="40"
+                            HeightRequest="40"
+                            FontSize="20"
+                            CornerRadius="20"
+                            Padding="0" />
+                </Grid>
+            </Frame>
+
+            <!--<Button Text="Recargar"
+                    Command="{Binding CargarHimnosCommand}"
                     BackgroundColor="#0077FF"
                     TextColor="White"
                     CornerRadius="10"
-                    Padding="15" />
+                    Padding="15" />-->
 
-            <Label Text="No hay personas guardadas"
+            <Label Text="No hay himnos guardados"
                    FontSize="16"
                    TextColor="Gray"
                    HorizontalOptions="Center"
-                   IsVisible="{Binding NoHayPersonas}" />
+                   IsVisible="{Binding NoHayHimnos}" />
         </VerticalStackLayout>
 
         <!-- Lista con scroll -->
         <CollectionView Grid.Row="1" 
-                        ItemsSource="{Binding Personaslist}" 
+                        ItemsSource="{Binding Himnos}" 
                         SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -39,22 +67,37 @@
                            BackgroundColor="#F5F5F5"
                            BorderColor="#E0E0E0">
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="{Binding Nombre, StringFormat='👤 {0}'}"
+                            <VerticalStackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.VerDetalleHimnoCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </VerticalStackLayout.GestureRecognizers>
+
+                            <Label Text="{Binding Numero, StringFormat='Himno #{0}'}"
                                    FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="Chocolate"/>
+                            <Label Text="{Binding Nombre, StringFormat='Nombre: {0}'}"
+                                   FontSize="16"
                                    FontAttributes="Bold" />
-                            <Label Text="{Binding Apellidos, StringFormat='Apellidos: {0}'}"
-                                   FontSize="16" />
-                            <Label Text="{Binding Edad, StringFormat='Edad: {0} años'}"
-                                   FontSize="16" />
+                            <Label Text="{Binding Letra}"
+                                   FontSize="14"
+                                   LineBreakMode="WordWrap"
+                                   MaxLines="2" />
+                            <Label Text="Toca para ver letra completa"
+                                   FontSize="12"
+                                   TextColor="Blue"
+                                   FontAttributes="Italic" />
                             
                             <Button Text="Eliminar"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarPersonaCommand}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarHimnoCommand}"
                                     CommandParameter="{Binding Id}"
                                     BackgroundColor="#FF6B6B"
                                     TextColor="White"
                                     CornerRadius="8"
                                     Padding="10"
-                                    Margin="0,5,0,0" />
+                                    Margin="0,5,0,0" 
+                                    FontAttributes="Bold"/>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
@@ -63,12 +106,15 @@
 
         <!-- Footer -->
         <Button Grid.Row="2"
-                Text="Volver"
-                Command="{Binding VolverCommand}"
-                BackgroundColor="#666666"
+                Text="Agregar nuevo"
+                Command="{Binding IrANuevoHimnoCommand}"
+                BackgroundColor="#0077FF"
                 TextColor="White"
+                HorizontalOptions="Center"
                 CornerRadius="10"
-                Padding="15" />
+                Padding="15" 
+                FontAttributes="Bold"
+                FontSize="16"/>
 
     </Grid>
 

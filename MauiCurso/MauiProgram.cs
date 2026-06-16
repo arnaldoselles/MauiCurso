@@ -21,19 +21,25 @@ namespace MauiCurso
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-            // Páginas
+
+            // Copiar base de datos prellenada al iniciar la app
+            DatabaseInitializer.CopyDatabaseIfNeeded();
+
+            // Páginas 
+            builder.Services.AddSingleton<DetallesPage>();
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddTransient<DetallesPage>();
-            builder.Services.AddTransient<OtherPage>();
+            builder.Services.AddTransient<DetalleHimnoPage>();
+            
 
             // ViewModels
+            builder.Services.AddSingleton<DetallesViewModel>();
             builder.Services.AddSingleton<MainViewModel>();
-            builder.Services.AddTransient<DetallesViewModel>();
-            builder .Services.AddTransient<OtherViewModel>();
+            builder.Services.AddTransient<DetalleHimnoViewModel>();
+            
 
-            //Servicios
-            builder.Services.AddSingleton<PersonaDataService>();
-            builder.Services.AddSingleton<PersonaDatabaseService>();
+            // Servicios
+            builder.Services.AddSingleton<HimnoDatabaseService>();
+            builder.Services.AddSingleton<HimnoDataService>();
 
             return builder.Build();
         }
