@@ -76,7 +76,7 @@ namespace MauiCurso.ViewModels
                 Letra = string.Empty;
 
                 // Navegar a detalles
-                await Shell.Current.GoToAsync(nameof(DetallesPage));
+                await Shell.Current.GoToAsync("//detalles");
             }
             catch (Exception ex)
             {
@@ -94,7 +94,7 @@ namespace MauiCurso.ViewModels
         private async Task VolverALista()
         {
             HayError = false;
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("//detalles");
             //await Shell.Current.GoToAsync(nameof(DetallesPage));
         }
 

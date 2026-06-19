@@ -5,10 +5,10 @@
              BackgroundImageSource="background.png"
              >
 
-    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="20">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="10">
 
         <!-- Header -->
-        <VerticalStackLayout Grid.Row="0" Spacing="30">
+        <VerticalStackLayout Grid.Row="0" Spacing="10">
             <Label Text="Indice"
                    FontSize="35"
                    FontAttributes="Bold"
@@ -32,9 +32,11 @@
                             Text="X"
                             Command="{Binding LimpiarBusquedaCommand}"
                             BackgroundColor="Transparent"
-                            TextColor="Chocolate"
+                            TextColor="#007AFF"
                             WidthRequest="40"
                             HeightRequest="40"
+                            BorderWidth="2"
+                            BorderColor="#007AFF"
                             FontSize="20"
                             CornerRadius="20"
                             Padding="0" />
@@ -67,29 +69,47 @@
                            BackgroundColor="#F5F5F5"
                            BorderColor="#E0E0E0">
                         <VerticalStackLayout Spacing="8">
-                            <VerticalStackLayout.GestureRecognizers>
+                            <!--<VerticalStackLayout.GestureRecognizers>
                                 <TapGestureRecognizer 
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.VerDetalleHimnoCommand}"
                                     CommandParameter="{Binding .}" />
-                            </VerticalStackLayout.GestureRecognizers>
+                            </VerticalStackLayout.GestureRecognizers>-->
 
                             <Label Text="{Binding Numero, StringFormat='Himno #{0}'}"
-                                   FontSize="18"
+                                   FontSize="16"
                                    FontAttributes="Bold"
                                    TextColor="Chocolate"/>
-                            <Label Text="{Binding Nombre, StringFormat='Nombre: {0}'}"
-                                   FontSize="16"
+                            <Label Text="{Binding Nombre, StringFormat='♪ {0}'}"
+                                   FontSize="18"
+                                   TextColor="#3A2F1B"
+                                   HorizontalTextAlignment="Center"
                                    FontAttributes="Bold" />
                             <Label Text="{Binding Letra}"
                                    FontSize="14"
+                                   TextColor="#3A2F1B"
                                    LineBreakMode="WordWrap"
                                    MaxLines="2" />
-                            <Label Text="Toca para ver letra completa"
-                                   FontSize="12"
-                                   TextColor="Blue"
-                                   FontAttributes="Italic" />
-                            
-                            <Button Text="Eliminar"
+                            <BoxView HeightRequest="1"
+                                   BackgroundColor="#3A2F1B"
+                                   Margin="0,5"
+                                   Opacity="0.4"
+                                   />
+                            <Button Text="Ver letra completa"
+                                   Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.VerDetalleHimnoCommand}"
+                                   CommandParameter="{Binding .}"
+                                   BackgroundColor="Transparent"
+                                   TextColor="#007AFF"
+                                   BorderColor="#007AFF"
+                                   BorderWidth="2"
+                                   CornerRadius="12"
+                                   Padding="10,5"
+                                   Margin="0,5,0,0"
+                                   HorizontalOptions="Center"
+                                   WidthRequest="150"
+                                   HeightRequest="35"
+                                   FontSize="13"/>        
+
+                            <!--<Button Text="Eliminar"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarHimnoCommand}"
                                     CommandParameter="{Binding Id}"
                                     BackgroundColor="#FF6B6B"
@@ -97,7 +117,7 @@
                                     CornerRadius="8"
                                     Padding="10"
                                     Margin="0,5,0,0" 
-                                    FontAttributes="Bold"/>
+                                    FontAttributes="Bold"/>-->
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
@@ -106,15 +126,19 @@
 
         <!-- Footer -->
         <Button Grid.Row="2"
-                Text="Agregar nuevo"
-                Command="{Binding IrANuevoHimnoCommand}"
-                BackgroundColor="#0077FF"
-                TextColor="White"
-                HorizontalOptions="Center"
-                CornerRadius="10"
-                Padding="15" 
-                FontAttributes="Bold"
-                FontSize="16"/>
+        Text="+"
+        FontAttributes="Bold"
+        FontSize="40"
+        WidthRequest="65"
+        HeightRequest="65"
+        CornerRadius="33"
+        BackgroundColor="#007AFF"
+        TextColor="White"
+        HorizontalOptions="End"
+        VerticalOptions="End"
+        Margin="0,0,10,0"
+        Padding="0" 
+        Command="{Binding IrANuevoHimnoCommand}" />
 
     </Grid>
 

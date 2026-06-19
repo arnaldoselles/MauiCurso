@@ -39,7 +39,7 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-		
+
 		<!-- Android Runtime Identifier for ARM 32-bit devices -->
 		<RuntimeIdentifiers Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">android-arm</RuntimeIdentifiers>
 		<Platforms>AnyCPU;ARM32</Platforms>
@@ -49,12 +49,12 @@
 		<!-- App Icon -->
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources/Splash/splash.png" BaseSize="600,1600" Color="#FFFFFF" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
-		
+
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
@@ -63,8 +63,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\AppIcon\appicon.svg" />
-	  <None Remove="Resources\AppIcon\appiconfg.svg" />
+		<None Remove="Resources\AppIcon\appicon.svg" />
+		<None Remove="Resources\AppIcon\appiconfg.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -75,20 +75,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Pages\DetalleHimnoPage.xaml.cs">
-	    <DependentUpon>DetalleHimnoPage.xaml</DependentUpon>
-	  </Compile>
+		<Compile Update="Pages\DetalleHimnoPage.xaml.cs">
+			<DependentUpon>DetalleHimnoPage.xaml</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\DetallesPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		<MauiXaml Update="Pages\DetallesPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Include="Resources\AppIcon\appicon.svg" />
-	  <MauiImage Include="Resources\AppIcon\appiconfg.svg" />
+		<MauiImage Include="Resources\AppIcon\appicon.svg" />
+		<MauiImage Include="Resources\AppIcon\appiconfg.svg" />
 	</ItemGroup>
 
 </Project>
