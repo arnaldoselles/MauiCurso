@@ -82,9 +82,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiImage Include="Resources\AppIcon\appicon.png">
-		  <CopyToOutputDirectory></CopyToOutputDirectory>
-		</MauiImage>
+		<MauiIcon Include="Resources\AppIcon\appicon.png">
+		</MauiIcon>
 		
 	</ItemGroup>
 
