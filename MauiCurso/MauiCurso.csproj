@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net8.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
@@ -62,12 +62,7 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<None Remove="Resources\AppIcon\appicon.svg" />
-		<None Remove="Resources\AppIcon\appiconfg.svg" />
-	</ItemGroup>
-
-	<ItemGroup>
+		<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.8" />
@@ -87,8 +82,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<MauiImage Include="Resources\AppIcon\appicon.svg" />
-		<MauiImage Include="Resources\AppIcon\appiconfg.svg" />
+		<MauiImage Include="Resources\AppIcon\appicon.png">
+		  <CopyToOutputDirectory></CopyToOutputDirectory>
+		</MauiImage>
+		
 	</ItemGroup>
 
 </Project>
