@@ -49,7 +49,7 @@
        FontSize="14"
        IsVisible="{Binding HayError}" />
 
-        <Button Text="Agregar himno"
+        <Button Text="Guardar himno"
                 Margin="50"
                 Command="{Binding IrADetallesCommand}"
                 HorizontalOptions="Center"
@@ -58,7 +58,7 @@
                 CornerRadius="10"
                 HeightRequest="50" 
                 FontAttributes="Bold"
-                FontSize="16"
+                FontSize="14"
         />
 
         <Button Text="←Volver al Índice"
@@ -70,7 +70,7 @@
         Margin="-50"
         HeightRequest="50" 
         FontAttributes="Bold"
-        FontSize="16"/>
+        FontSize="14"/>
 
     </VerticalStackLayout>
 
