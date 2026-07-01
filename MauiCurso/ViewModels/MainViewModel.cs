@@ -45,6 +45,12 @@ namespace MauiCurso.ViewModels
                 return;
             }
 
+            if (await _himnoService.ExisteNumeroAsync(numeroHimno))
+            {
+                MostrarError($"El himno número {numeroHimno} ya existe");
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(Nombre))
             {
                 MostrarError("El nombre del himno no puede estar vacío");
@@ -83,6 +89,7 @@ namespace MauiCurso.ViewModels
                 MostrarError($"Error al guardar: {ex.Message}");
             }
         }
+
 
         private void MostrarError(string mensaje)
         {

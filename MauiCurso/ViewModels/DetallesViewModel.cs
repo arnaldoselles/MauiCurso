@@ -84,6 +84,15 @@ namespace MauiCurso.ViewModels
         [RelayCommand]
         public async Task EliminarHimno(int id)
         {
+            bool confirmar = await Application.Current.MainPage.DisplayAlert(
+                "Confirmar eliminación",
+                "¿Deseas eliminar este himno?",
+                "Sí",
+                "No");
+
+            if (!confirmar)
+                return;
+
             try
             {
                 await _himnoService.EliminarHimnoAsync(id);
@@ -91,15 +100,16 @@ namespace MauiCurso.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current!.MainPage!.DisplayAlert("Error", $"Error al eliminar: {ex.Message}", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", $"Error al eliminar: {ex.Message}", "OK");
             }
         }
+
 
         [RelayCommand]
         private async Task IrANuevoHimno()
         {
             await Shell.Current.GoToAsync(nameof(MainPage));
-            //await Shell.Current.GoToAsync("..");
+            
         }
 
         [RelayCommand]

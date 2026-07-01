@@ -35,11 +35,11 @@
                 Command="{Binding LimpiarBusquedaCommand}"
                 BackgroundColor="Transparent"
                 TextColor="#007AFF"
-                WidthRequest="20"
-                HeightRequest="20"
+                WidthRequest="30"
+                HeightRequest="30"
                 BorderWidth="2"
                 BorderColor="#007AFF"
-                FontSize="16"
+                FontSize="12"
                 CornerRadius="20"
                 Padding="0" />
                 </Grid>
@@ -116,8 +116,8 @@
                                <!-- Botón eliminar pequeño -->
                             <ImageButton Grid.Column="1"
                              Source="delete.png"
-                             WidthRequest="20"
-                             HeightRequest="20"
+                             WidthRequest="28"
+                             HeightRequest="28"
                              BackgroundColor="Transparent"
                              Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarHimnoCommand}"
                              CommandParameter="{Binding Id}" />

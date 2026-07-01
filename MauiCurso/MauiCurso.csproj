@@ -40,10 +40,13 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 
-		<!-- Android Runtime Identifier for ARM 32-bit devices -->
-		<RuntimeIdentifiers Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">android-arm</RuntimeIdentifiers>
-		<Platforms>AnyCPU;ARM32</Platforms>
+		
 	</PropertyGroup>
+	<!-- Configuración correcta para Android ARM32 -->
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+    <AndroidSupportedAbis>armeabi-v7a</AndroidSupportedAbis>
+	</PropertyGroup>
+
 
 	<ItemGroup>
 		<!-- App Icon -->
