@@ -28,6 +28,7 @@
                Placeholder="Buscar himno por nombre o número..."
                Text="{Binding TextoBusqueda}"
                BackgroundColor="Transparent"
+               TextColor="Black"
                FontSize="13" />
 
                     <Button Grid.Column="1"
