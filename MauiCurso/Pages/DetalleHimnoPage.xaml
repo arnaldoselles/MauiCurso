@@ -39,8 +39,8 @@
        TextColor="#3A2F1B"
        HorizontalOptions="Center"
        VerticalOptions="Center"
-       HorizontalTextAlignment="Center"
-       VerticalTextAlignment="Center" />
+       HorizontalTextAlignment="Start"
+       VerticalTextAlignment="Start" />
 
             </Frame>
         </ScrollView>

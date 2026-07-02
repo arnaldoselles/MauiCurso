@@ -89,5 +89,13 @@
 		</MauiIcon>
 		
 	</ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>miapp.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyAlias>miapp</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>Prueba123/*</AndroidSigningKeyPass>
+    <AndroidSigningStorePass>Prueba123/*</AndroidSigningStorePass>
+</PropertyGroup>
+
 
 </Project>
