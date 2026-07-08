@@ -35,10 +35,12 @@
                    BorderColor="#D6C7A1">
                 <Label Text="{Binding HimnoSeleccionado.Letra}"
        FontSize="17"
+       CharacterSpacing="0.5"
+       
        LineBreakMode="WordWrap"
        TextColor="#3A2F1B"
-       HorizontalOptions="Center"
-       VerticalOptions="Center"
+       HorizontalOptions="Fill"
+       VerticalOptions="Start"
        HorizontalTextAlignment="Start"
        VerticalTextAlignment="Start" />
 

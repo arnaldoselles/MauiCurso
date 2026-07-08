@@ -114,15 +114,15 @@
                             HeightRequest="28"
                             FontSize="11"/>
 
-                               <!-- Botón eliminar pequeño -->
-                            <ImageButton Grid.Column="1"
+                                <!-- Botón eliminar pequeño -->
+                                <ImageButton Grid.Column="1"
                              Source="delete.png"
                              WidthRequest="28"
                              HeightRequest="28"
                              BackgroundColor="Transparent"
                              Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarHimnoCommand}"
                              CommandParameter="{Binding Id}" />
-                             </Grid>
+                            </Grid>
 
                         </VerticalStackLayout>
                     </Frame>
