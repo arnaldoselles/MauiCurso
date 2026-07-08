@@ -41,5 +41,11 @@ namespace MauiCurso.Services
         {
             await _databaseService.ActualizarAsync(himno);
         }
+
+        public async Task<bool> ExisteNumeroAsync(int numero)
+        {
+            var himnos = await _databaseService.ObtenerTodosAsync();
+            return himnos.Any(h => h.Numero == numero);
+        }
     }
 }

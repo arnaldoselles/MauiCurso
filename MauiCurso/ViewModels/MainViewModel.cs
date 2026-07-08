@@ -45,6 +45,12 @@ namespace MauiCurso.ViewModels
                 return;
             }
 
+            if (await _himnoService.ExisteNumeroAsync(numeroHimno))
+            {
+                MostrarError($"El himno número {numeroHimno} ya existe");
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(Nombre))
             {
                 MostrarError("El nombre del himno no puede estar vacío");
@@ -76,13 +82,14 @@ namespace MauiCurso.ViewModels
                 Letra = string.Empty;
 
                 // Navegar a detalles
-                await Shell.Current.GoToAsync(nameof(DetallesPage));
+                await Shell.Current.GoToAsync("//detalles");
             }
             catch (Exception ex)
             {
                 MostrarError($"Error al guardar: {ex.Message}");
             }
         }
+
 
         private void MostrarError(string mensaje)
         {
@@ -94,7 +101,7 @@ namespace MauiCurso.ViewModels
         private async Task VolverALista()
         {
             HayError = false;
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("//detalles");
             //await Shell.Current.GoToAsync(nameof(DetallesPage));
         }
 

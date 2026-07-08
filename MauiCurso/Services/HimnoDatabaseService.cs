@@ -26,16 +26,36 @@ namespace MauiCurso.Services
         public async Task<List<Himno>> ObtenerTodosAsync()
         {
             await Init();
-            return await _database!.Table<Himno>().OrderBy(h => h.Numero).ToListAsync();
+            var lista = await _database!.Table<Himno>().OrderBy(h => h.Numero).ToListAsync();
+
+            foreach (var h in lista)
+            {
+                h.Letra = h.Letra
+                    .Replace("\r\n", "\n")
+                    .Replace("\r", "\n");
+            }
+
+            return lista;
         }
+
 
         public async Task<Himno?> ObtenerPorIdAsync(int id)
         {
             await Init();
-            return await _database!.Table<Himno>()
+            var himno = await _database!.Table<Himno>()
                 .Where(h => h.Id == id)
                 .FirstOrDefaultAsync();
+
+            if (himno is not null)
+            {
+                himno.Letra = himno.Letra
+                    .Replace("\r\n", "\n")
+                    .Replace("\r", "\n");
+            }
+
+            return himno;
         }
+
 
         public async Task<int> EliminarAsync(int id)
         {
