@@ -84,6 +84,19 @@ namespace MauiCurso.ViewModels
         [RelayCommand]
         public async Task EliminarHimno(int id)
         {
+            // Buscar el himno en la colección
+            var himno = Himnos.FirstOrDefault(h => h.Id == id);
+
+            if (himno != null && himno.Numero <= 198)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Aviso",
+                    $"El himno número {himno.Numero} no puede eliminarse porque es parte del original, solo se pueden eliminar los himnos creados por usted",
+                    "OK"
+                );
+                return; // salir sin eliminar
+            }
+
             bool confirmar = await Application.Current.MainPage.DisplayAlert(
                 "Confirmar eliminación",
                 "¿Deseas eliminar este himno?",
@@ -103,6 +116,7 @@ namespace MauiCurso.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Error", $"Error al eliminar: {ex.Message}", "OK");
             }
         }
+
 
 
         [RelayCommand]

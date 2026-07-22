@@ -116,12 +116,15 @@
 
                                 <!-- Botón eliminar pequeño -->
                                 <ImageButton Grid.Column="1"
-                             Source="delete.png"
-                             WidthRequest="28"
-                             HeightRequest="28"
-                             BackgroundColor="Transparent"
-                             Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarHimnoCommand}"
-                             CommandParameter="{Binding Id}" />
+             Source="delete.png"
+             WidthRequest="28"
+             HeightRequest="28"
+             BackgroundColor="Transparent"
+             Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarHimnoCommand}"
+             CommandParameter="{Binding Id}"
+             IsEnabled="{Binding Numero, Converter={StaticResource MayorQue198Converter}}"
+             Opacity="{Binding Numero, Converter={StaticResource MayorQue198Converter}, ConverterParameter=Opacity}" />
+
                             </Grid>
 
                         </VerticalStackLayout>

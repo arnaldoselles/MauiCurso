@@ -66,6 +66,38 @@
                     HeightRequest="50" 
                     FontAttributes="Bold"
                     FontSize="14"/>
+            <!--Este ejemplo es con data trigger-->
+    <!--<Frame CornerRadius="10" Padding="10" BorderColor="Transparent">
+    <Editor x:Name="EditorLetra"
+                        Placeholder="Letra del himno"
+                        Text="{Binding Letra}"
+                        BackgroundColor="#F0F0F0"
+                        TextColor="Black"
+                        PlaceholderColor="#555"
+                        HeightRequest="250">
+        -->
+            <!-- DataTriggers para orientación -->
+            <!--
+        <Editor.Triggers>
+            -->
+            <!-- Portrait (ancho menor a 600) -->
+            <!--
+            <DataTrigger TargetType="Editor"
+                                     Binding="{Binding Source={x:Reference RootPage}, Path=Width}"
+                                     Value="400">
+                <Setter Property="HeightRequest" Value="250"/>
+            </DataTrigger>
+            -->
+            <!-- Landscape (ancho mayor a 600) -->
+            <!--
+            <DataTrigger TargetType="Editor"
+                                     Binding="{Binding Source={x:Reference RootPage}, Path=Width}"
+                                     Value="600">
+                <Setter Property="HeightRequest" Value="150"/>
+            </DataTrigger>
+        </Editor.Triggers>
+    </Editor>
+</Frame>-->
 
             <!-- Aquí va el VisualStateManager, después del contenido -->
             <VisualStateManager.VisualStateGroups>
@@ -90,3 +122,4 @@
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
+   
