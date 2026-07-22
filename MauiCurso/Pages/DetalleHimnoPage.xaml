@@ -33,15 +33,15 @@
                    Padding="20"
                    HasShadow="True"
                    BorderColor="#D6C7A1">
-                <Label Text="{Binding HimnoSeleccionado.Letra}"
+       <Label Text="{Binding HimnoSeleccionado.Letra}"
        FontSize="17"
        CharacterSpacing="0.5"
        
        LineBreakMode="WordWrap"
        TextColor="#3A2F1B"
-       HorizontalOptions="Fill"
+       HorizontalOptions="FillAndExpand"
        VerticalOptions="Start"
-       HorizontalTextAlignment="Start"
+       HorizontalTextAlignment="Center"
        VerticalTextAlignment="Start" />
 
             </Frame>
