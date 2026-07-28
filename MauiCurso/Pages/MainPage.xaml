@@ -4,74 +4,122 @@
              x:Class="MauiCurso.MainPage"
              BackgroundImageSource="background.png">
 
-    <VerticalStackLayout Padding="20" Spacing="20">
-               
-        <Label Text="Datos del himno"
-               FontSize="28"
-               FontAttributes="Bold"
-               TextColor="Chocolate"
-               HorizontalOptions="Center" />
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
 
-        <Frame CornerRadius="10" 
-               Padding="10" 
-               BorderColor="Transparent">
-            <Entry Placeholder="Número del himno"
-       Text="{Binding Numero}"
-       Keyboard="Numeric"
-       BackgroundColor="#F0F0F0"
-       TextColor="Black"
-       PlaceholderColor="#555" />
-        </Frame>
+            <Label Text="Datos del himno"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="Chocolate"
+                   HorizontalOptions="Center" />
 
-        <Frame CornerRadius="10" 
-               Padding="10" 
-               BorderColor="Transparent">
-            <Entry Placeholder="Nombre del himno"
-       Text="{Binding Nombre}"
-       BackgroundColor="#F0F0F0"
-       TextColor="Black"
-       PlaceholderColor="#555" />
-        </Frame>
+            <Frame CornerRadius="10" Padding="10" BorderColor="Transparent">
+                <Entry Placeholder="Número del himno"
+                       Text="{Binding Numero}"
+                       Keyboard="Numeric"
+                       BackgroundColor="#F0F0F0"
+                       TextColor="Black"
+                       PlaceholderColor="#555" />
+            </Frame>
 
-        <Frame CornerRadius="10" 
-               Padding="10" 
-               BorderColor="Transparent">
-            <Editor Placeholder="Letra del himno"
-        Text="{Binding Letra}"
-        BackgroundColor="#F0F0F0"
-        TextColor="Black"
-        PlaceholderColor="#555"
-        HeightRequest="250" />
-        </Frame>
+            <Frame CornerRadius="10" Padding="10" BorderColor="Transparent">
+                <Entry Placeholder="Nombre del himno"
+                       Text="{Binding Nombre}"
+                       BackgroundColor="#F0F0F0"
+                       TextColor="Black"
+                       PlaceholderColor="#555" />
+            </Frame>
 
-        <Label Text="{Binding MensajeError}"
-       TextColor="Red"
-       FontSize="14"
-       IsVisible="{Binding HayError}" />
+            <Frame CornerRadius="10" Padding="10" BorderColor="Transparent">
+                <Editor x:Name="EditorLetra"
+                        Placeholder="Letra del himno"
+                        Text="{Binding Letra}"
+                        BackgroundColor="#F0F0F0"
+                        TextColor="Black"
+                        PlaceholderColor="#555"
+                        HeightRequest="250" />
+            </Frame>
 
-        <Button Text="Guardar himno"
-                Margin="2"
-                Command="{Binding IrADetallesCommand}"
-                HorizontalOptions="Center"
-                BackgroundColor="#0077FF"
-                TextColor="White"
-                CornerRadius="10"
-                HeightRequest="50" 
-                FontAttributes="Bold"
-                FontSize="14"
-        />
+            <Label Text="{Binding MensajeError}"
+                   TextColor="Red"
+                   FontSize="14"
+                   IsVisible="{Binding HayError}" />
 
-        <Button Text="←Volver al Índice"
-        Command="{Binding VolverAListaCommand}"
-        HorizontalOptions="Center"
-        BackgroundColor="#0077FF"
-        TextColor="White"
-        CornerRadius="10"
-        Margin="-10"
-        HeightRequest="50" 
-        FontAttributes="Bold"
-        FontSize="14"/>
+            <Button Text="Guardar himno"
+                    Margin="2"
+                    Command="{Binding IrADetallesCommand}"
+                    HorizontalOptions="Center"
+                    BackgroundColor="#0077FF"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50" 
+                    FontAttributes="Bold"
+                    FontSize="14" />
 
-    </VerticalStackLayout>
+            <Button Text="←Volver al Índice"
+                    Command="{Binding VolverAListaCommand}"
+                    HorizontalOptions="Center"
+                    BackgroundColor="#0077FF"
+                    TextColor="White"
+                    CornerRadius="10"
+                    Margin="-10"
+                    HeightRequest="50" 
+                    FontAttributes="Bold"
+                    FontSize="14"/>
+            <!--Este ejemplo es con data trigger-->
+    <!--<Frame CornerRadius="10" Padding="10" BorderColor="Transparent">
+    <Editor x:Name="EditorLetra"
+                        Placeholder="Letra del himno"
+                        Text="{Binding Letra}"
+                        BackgroundColor="#F0F0F0"
+                        TextColor="Black"
+                        PlaceholderColor="#555"
+                        HeightRequest="250">
+        -->
+            <!-- DataTriggers para orientación -->
+            <!--
+        <Editor.Triggers>
+            -->
+            <!-- Portrait (ancho menor a 600) -->
+            <!--
+            <DataTrigger TargetType="Editor"
+                                     Binding="{Binding Source={x:Reference RootPage}, Path=Width}"
+                                     Value="400">
+                <Setter Property="HeightRequest" Value="250"/>
+            </DataTrigger>
+            -->
+            <!-- Landscape (ancho mayor a 600) -->
+            <!--
+            <DataTrigger TargetType="Editor"
+                                     Binding="{Binding Source={x:Reference RootPage}, Path=Width}"
+                                     Value="600">
+                <Setter Property="HeightRequest" Value="150"/>
+            </DataTrigger>
+        </Editor.Triggers>
+    </Editor>
+</Frame>-->
 
+            <!-- Aquí va el VisualStateManager, después del contenido -->
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="OrientationStates">
+                    <VisualState x:Name="Portrait">
+                        <VisualState.Setters>
+                            <Setter TargetName="EditorLetra"
+                                    Property="HeightRequest"
+                                    Value="250" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Landscape">
+                        <VisualState.Setters>
+                            <Setter TargetName="EditorLetra"
+                                    Property="HeightRequest"
+                                    Value="150" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
+   
