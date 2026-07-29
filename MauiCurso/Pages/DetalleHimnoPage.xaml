@@ -7,7 +7,6 @@
 
         <!-- HEADER -->
         <Frame Grid.Row="0"
-               
                CornerRadius="15"
                Padding="15"
                HasShadow="True">
@@ -33,35 +32,49 @@
                    Padding="20"
                    HasShadow="True"
                    BorderColor="#D6C7A1">
-       <Label Text="{Binding HimnoSeleccionado.Letra}"
-       FontSize="17"
-       CharacterSpacing="0.5"
-       
-       LineBreakMode="WordWrap"
-       TextColor="#3A2F1B"
-       HorizontalOptions="FillAndExpand"
-       VerticalOptions="Start"
-       HorizontalTextAlignment="Center"
-       VerticalTextAlignment="Start" />
-
+                <Label Text="{Binding HimnoSeleccionado.Letra}"
+                       FontSize="{Binding FontSize}"
+                       CharacterSpacing="0.5"
+                       LineBreakMode="WordWrap"
+                       TextColor="#3A2F1B"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="Start"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Start" />
             </Frame>
         </ScrollView>
 
-        <!-- BOTÓN VOLVER -->
-        <Frame Grid.Row="2"
-               BackgroundColor="Transparent"
-               Padding="0">
+        <!-- BARRA INFERIOR -->
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto,*" Padding="5">
+
+            <!-- Botón Volver centrado respecto al himno -->
             <Button Text="←Volver al índice"
                     Command="{Binding VolverCommand}"
                     BackgroundColor="#0077FF"
                     TextColor="White"
-                    HorizontalOptions="Center"
                     CornerRadius="12"
-                    Padding="15"
+                    Padding="8"
                     FontAttributes="Bold"
-                    FontSize="16" />
-        </Frame>
+                    FontSize="16"
+                    Grid.Column="1"
+                    HorizontalOptions="Center" />
+
+            <!-- Botones A+ y A- a la derecha -->
+            <HorizontalStackLayout Spacing="10"
+                                   HorizontalOptions="End"
+                                   Grid.Column="2">
+                <Button Text="A+" Command="{Binding AumentarLetraCommand}"
+                        WidthRequest="35" HeightRequest="35"
+                        FontSize="12" CornerRadius="8"
+                        BackgroundColor="#0077FF" TextColor="White" 
+                        FontAttributes="Bold"/>
+                <Button Text="A-" Command="{Binding DisminuirLetraCommand}"
+                        WidthRequest="35" HeightRequest="35"
+                        FontSize="12" CornerRadius="8"
+                        BackgroundColor="#0077FF" TextColor="White" 
+                        FontAttributes="Bold"/>
+            </HorizontalStackLayout>
+        </Grid>
 
     </Grid>
-
 </ContentPage>
