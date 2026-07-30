@@ -48,29 +48,29 @@
         <Grid Grid.Row="2" ColumnDefinitions="*,Auto,*" Padding="5">
 
             <!-- Botón Volver centrado respecto al himno -->
-            <Button Text="←Volver al índice"
+            <Button Text="←Índice"
                     Command="{Binding VolverCommand}"
                     BackgroundColor="#0077FF"
                     TextColor="White"
                     CornerRadius="12"
-                    Padding="8"
+                    Padding="12"
                     FontAttributes="Bold"
                     FontSize="16"
                     Grid.Column="1"
                     HorizontalOptions="Center" />
 
             <!-- Botones A+ y A- a la derecha -->
-            <HorizontalStackLayout Spacing="10"
+            <HorizontalStackLayout Spacing="5"
                                    HorizontalOptions="End"
                                    Grid.Column="2">
                 <Button Text="A+" Command="{Binding AumentarLetraCommand}"
-                        WidthRequest="35" HeightRequest="35"
-                        FontSize="12" CornerRadius="8"
+                        WidthRequest="43" HeightRequest="43"
+                        FontSize="12" CornerRadius="20"
                         BackgroundColor="#0077FF" TextColor="White" 
                         FontAttributes="Bold"/>
                 <Button Text="A-" Command="{Binding DisminuirLetraCommand}"
-                        WidthRequest="35" HeightRequest="35"
-                        FontSize="12" CornerRadius="8"
+                        WidthRequest="43" HeightRequest="43"
+                        FontSize="12" CornerRadius="20"
                         BackgroundColor="#0077FF" TextColor="White" 
                         FontAttributes="Bold"/>
             </HorizontalStackLayout>
