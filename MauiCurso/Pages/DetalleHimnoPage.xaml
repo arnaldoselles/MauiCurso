@@ -64,13 +64,13 @@
                                    HorizontalOptions="End"
                                    Grid.Column="2">
                 <Button Text="A+" Command="{Binding AumentarLetraCommand}"
-                        WidthRequest="43" HeightRequest="43"
-                        FontSize="12" CornerRadius="20"
+                        WidthRequest="50" HeightRequest="43"
+                        FontSize="14" CornerRadius="20"
                         BackgroundColor="#0077FF" TextColor="White" 
                         FontAttributes="Bold"/>
                 <Button Text="A-" Command="{Binding DisminuirLetraCommand}"
-                        WidthRequest="43" HeightRequest="43"
-                        FontSize="12" CornerRadius="20"
+                        WidthRequest="50" HeightRequest="43"
+                        FontSize="14" CornerRadius="20"
                         BackgroundColor="#0077FF" TextColor="White" 
                         FontAttributes="Bold"/>
             </HorizontalStackLayout>
