@@ -4,7 +4,6 @@
              x:Class="MauiCurso.DetallesPage"
              BackgroundImageSource="background.png"
              >
-
     <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="5">
 
         <!-- Header -->
@@ -46,14 +45,6 @@
                 </Grid>
             </Frame>
 
-
-            <!--<Button Text="Recargar"
-                    Command="{Binding CargarHimnosCommand}"
-                    BackgroundColor="#0077FF"
-                    TextColor="White"
-                    CornerRadius="10"
-                    Padding="15" />-->
-
             <Label Text="No hay himnos guardados"
                    FontSize="16"
                    TextColor="Gray"
@@ -62,7 +53,7 @@
         </VerticalStackLayout>
 
         <!-- Lista con scroll -->
-        <CollectionView Grid.Row="1" 
+        <CollectionView x:Name="HimnosCollectionView" Grid.Row="1" 
                 ItemsSource="{Binding Himnos}" 
                 SelectionMode="None">
 
@@ -133,6 +124,27 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
+        <!-- Botones flotantes para desplazar la lista por 10 items -->
+        <VerticalStackLayout Grid.Row="1"
+                             HorizontalOptions="End"
+                             VerticalOptions="End"
+                             Margin="0,0,16,16"
+                             Spacing="8">
+            <Button Text="▲10"
+                    WidthRequest="56"
+                    HeightRequest="44"
+                    CornerRadius="22"
+                    BackgroundColor="#FFFFFFCC"
+                    TextColor="#007AFF"
+                    Clicked="ScrollLinesUp_Clicked"/>
+            <Button Text="▼10"
+                    WidthRequest="56"
+                    HeightRequest="44"
+                    CornerRadius="22"
+                    BackgroundColor="#FFFFFFCC"
+                    TextColor="#007AFF"
+                    Clicked="ScrollLinesDown_Clicked"/>
+        </VerticalStackLayout>
 
         <!-- Footer -->
         <Button Grid.Row="2"
