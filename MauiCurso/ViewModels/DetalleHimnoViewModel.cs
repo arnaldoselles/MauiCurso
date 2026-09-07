@@ -66,5 +66,19 @@ namespace MauiCurso.ViewModels
             if (FontSize > 10)
                 FontSize -= 2;
         }
+
+        //Nuevo comando para compartir himno
+        [RelayCommand]
+        public async Task CompartirHimno(Himno himno)
+        {
+            if (himno == null) return;
+
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = $"Himno #{himno.Numero}\n{himno.Nombre}\n\n{himno.Letra}",
+                Title = "Compartir himno"
+            });
+        }
+
     }
 }

@@ -73,6 +73,15 @@
                         FontSize="14" CornerRadius="20"
                         BackgroundColor="#0077FF" TextColor="White" 
                         FontAttributes="Bold"/>
+                <!-- Compartir -->
+                <ImageButton Source="share.png"
+             WidthRequest="50"
+             HeightRequest="50"
+             BackgroundColor="Transparent"
+                             
+             Command="{Binding CompartirHimnoCommand}"
+             CommandParameter="{Binding HimnoSeleccionado}" />
+
             </HorizontalStackLayout>
         </Grid>
 

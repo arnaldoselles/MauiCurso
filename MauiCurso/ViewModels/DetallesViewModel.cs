@@ -87,7 +87,7 @@ namespace MauiCurso.ViewModels
             // Buscar el himno en la colección
             var himno = Himnos.FirstOrDefault(h => h.Id == id);
 
-            if (himno != null && himno.Numero <= 198)
+            if (himno != null && himno.Numero <= 192)
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Aviso",
@@ -131,5 +131,7 @@ namespace MauiCurso.ViewModels
         {
             TextoBusqueda = string.Empty;
         }
+
+        
     }
 }

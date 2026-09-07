@@ -4,10 +4,10 @@
              x:Class="MauiCurso.DetallesPage"
              BackgroundImageSource="background.png"
              >
-    <Grid RowDefinitions="Auto,*,Auto" Padding="20" RowSpacing="5">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="10" RowSpacing="2">
 
         <!-- Header -->
-        <VerticalStackLayout Grid.Row="0" Spacing="5">
+        <VerticalStackLayout Grid.Row="0" Spacing="0">
             <Label Text="Indice"
                    FontSize="35"
                    FontAttributes="Bold"
@@ -23,7 +23,7 @@
 
                 <Grid ColumnDefinitions="*,Auto" Padding="6" ColumnSpacing="8">
 
-                    <Entry Grid.Column="0"
+               <Entry Grid.Column="0"
                Placeholder="Buscar himno por nombre o número..."
                Text="{Binding TextoBusqueda}"
                BackgroundColor="Transparent"
@@ -40,6 +40,7 @@
                 BorderWidth="2"
                 BorderColor="#007AFF"
                 FontSize="12"
+                FontAttributes="Bold"
                 CornerRadius="20"
                 Padding="0" />
                 </Grid>
@@ -66,7 +67,7 @@
                     <Frame CornerRadius="12"
                    Padding="8"
                    Margin="0,3"
-                   BackgroundColor="#F5F5F5"
+                   BackgroundColor="#99FFFFFF"
                    BorderColor="#E0E0E0">
 
                         <VerticalStackLayout Spacing="4">
@@ -107,14 +108,14 @@
 
                                 <!-- Botón eliminar pequeño -->
                                 <ImageButton Grid.Column="1"
-             Source="delete.png"
-             WidthRequest="28"
-             HeightRequest="28"
-             BackgroundColor="Transparent"
-             Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarHimnoCommand}"
-             CommandParameter="{Binding Id}"
-             IsEnabled="{Binding Numero, Converter={StaticResource MayorQue198Converter}}"
-             Opacity="{Binding Numero, Converter={StaticResource MayorQue198Converter}, ConverterParameter=Opacity}" />
+                                 Source="delete.png"
+                             WidthRequest="28"
+                             HeightRequest="28"
+                             BackgroundColor="Transparent"
+                             Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarHimnoCommand}"
+                             CommandParameter="{Binding Id}"
+                             IsEnabled="{Binding Numero, Converter={StaticResource MayorQue192Converter}}"
+                             Opacity="{Binding Numero, Converter={StaticResource MayorQue192Converter}, ConverterParameter=Opacity}" />
 
                             </Grid>
 
@@ -128,21 +129,21 @@
         <VerticalStackLayout Grid.Row="1"
                              HorizontalOptions="End"
                              VerticalOptions="End"
-                             Margin="0,0,16,16"
+                             Margin="0,0,8,55"
                              Spacing="8">
-            <Button Text="▲10"
-                    WidthRequest="56"
+            <Button Text="▲"
+                    WidthRequest="44"
                     HeightRequest="44"
                     CornerRadius="22"
-                    BackgroundColor="#FFFFFFCC"
-                    TextColor="#007AFF"
+                    BackgroundColor="#007AFF"
+                    TextColor="White"
                     Clicked="ScrollLinesUp_Clicked"/>
-            <Button Text="▼10"
-                    WidthRequest="56"
+            <Button Text="▼"
+                    WidthRequest="44"
                     HeightRequest="44"
                     CornerRadius="22"
-                    BackgroundColor="#FFFFFFCC"
-                    TextColor="#007AFF"
+                    BackgroundColor="#007AFF"
+                    TextColor="White"
                     Clicked="ScrollLinesDown_Clicked"/>
         </VerticalStackLayout>
 
@@ -158,7 +159,7 @@
         TextColor="White"
         HorizontalOptions="End"
         VerticalOptions="End"
-        Margin="0,0,10,0"
+        Margin="0,0,4,0"
         Padding="0" 
         Command="{Binding IrANuevoHimnoCommand}" />
 
