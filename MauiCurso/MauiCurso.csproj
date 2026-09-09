@@ -34,13 +34,50 @@
         <AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
         <AndroidPackageFormat>apk</AndroidPackageFormat>
         <AndroidPackageName>Himnario.apk</AndroidPackageName>
+        
+		<!-- Configuración por defecto (Debug) -->
+        <AndroidEnableProfiledAot>False</AndroidEnableProfiledAot>
+        <AndroidUseAapt2>true</AndroidUseAapt2>
     </PropertyGroup>
 
+    <!-- Configuración Release con optimización -->
+<PropertyGroup Condition="'$(Configuration)'=='Release' and $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+    <!-- Firma -->
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>miapp.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyAlias>miapp</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>Prueba123/*</AndroidSigningKeyPass>
+    <AndroidSigningStorePass>Prueba123/*</AndroidSigningStorePass>
+
+    <!-- Optimización -->
+    <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
+    <AndroidEnableAot>true</AndroidEnableAot>
+    <AndroidEnableLLVM>true</AndroidEnableLLVM>
+    <AndroidLinkMode>Full</AndroidLinkMode>
+
+    <!-- Shrinker/Ofuscador moderno -->
+    <AndroidEnableR8>true</AndroidEnableR8>
+    <AndroidLinkTool>r8</AndroidLinkTool>
+
+    <!-- Herramienta de empaquetado -->
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+</PropertyGroup>
+
+
+
+    <!-- icon -->
     <ItemGroup>
-        <MauiSplashScreen Include="Resources/Splash/splash.png" BaseSize="512,512" Color="#FFFFFF" Resize="True" />
+        <MauiIcon Include="Resources\AppIcon\appicon.png" 
+	      ForegroundFile="Resources\AppIcon\appicon_foreground.png" 
+		  BackgroundFile="Resources\AppIcon\appicon_background.png" 
+		  ForegroundScale="0.85" />
+		
         <MauiImage Include="Resources\Images\*" />
         <MauiFont Include="Resources\Fonts\*" />
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Resources\Splash\splash.svg" />
     </ItemGroup>
 
     <ItemGroup>
@@ -48,6 +85,14 @@
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.8" />
         <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+    </ItemGroup>
+    
+    <!-- splash -->
+    <ItemGroup>
+		<MauiSplashScreen Include="Resources\Splash\splash.png" 
+         Color="#FFFFFF" 
+         BaseSize="1024 ,1024" />
+        
     </ItemGroup>
 
     <ItemGroup>
@@ -61,18 +106,5 @@
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
     </ItemGroup>
-
-    <ItemGroup>
-        <MauiIcon Include="Resources\AppIcon\appicon.png" />
-    </ItemGroup>
-
-    <!-- Firma para Release -->
-    <PropertyGroup Condition="'$(Configuration)'=='Release'">
-        <AndroidKeyStore>true</AndroidKeyStore>
-        <AndroidSigningKeyStore>miapp.keystore</AndroidSigningKeyStore>
-        <AndroidSigningKeyAlias>miapp</AndroidSigningKeyAlias>
-        <AndroidSigningKeyPass>Prueba123/*</AndroidSigningKeyPass>
-        <AndroidSigningStorePass>Prueba123/*</AndroidSigningStorePass>
-    </PropertyGroup>
 
 </Project>
