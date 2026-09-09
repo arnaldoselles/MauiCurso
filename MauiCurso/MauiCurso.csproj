@@ -41,15 +41,29 @@
     </PropertyGroup>
 
     <!-- Configuración Release con optimización -->
-    <PropertyGroup Condition="'$(Configuration)'=='Release' and $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
-        <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
-        <AndroidUseAapt2>true</AndroidUseAapt2>
-        <AndroidKeyStore>true</AndroidKeyStore>
-        <AndroidSigningKeyStore>miapp.keystore</AndroidSigningKeyStore>
-        <AndroidSigningKeyAlias>miapp</AndroidSigningKeyAlias>
-        <AndroidSigningKeyPass>Prueba123/*</AndroidSigningKeyPass>
-        <AndroidSigningStorePass>Prueba123/*</AndroidSigningStorePass>
-    </PropertyGroup>
+<PropertyGroup Condition="'$(Configuration)'=='Release' and $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+    <!-- Firma -->
+    <AndroidKeyStore>true</AndroidKeyStore>
+    <AndroidSigningKeyStore>miapp.keystore</AndroidSigningKeyStore>
+    <AndroidSigningKeyAlias>miapp</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>Prueba123/*</AndroidSigningKeyPass>
+    <AndroidSigningStorePass>Prueba123/*</AndroidSigningStorePass>
+
+    <!-- Optimización -->
+    <AndroidEnableProfiledAot>True</AndroidEnableProfiledAot>
+    <AndroidEnableAot>true</AndroidEnableAot>
+    <AndroidEnableLLVM>true</AndroidEnableLLVM>
+    <AndroidLinkMode>Full</AndroidLinkMode>
+
+    <!-- Shrinker/Ofuscador moderno -->
+    <AndroidEnableR8>true</AndroidEnableR8>
+    <AndroidLinkTool>r8</AndroidLinkTool>
+
+    <!-- Herramienta de empaquetado -->
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+</PropertyGroup>
+
+
 
     <!-- icon -->
     <ItemGroup>
@@ -77,7 +91,7 @@
     <ItemGroup>
 		<MauiSplashScreen Include="Resources\Splash\splash.png" 
          Color="#FFFFFF" 
-         BaseSize="2048,2048" />
+         BaseSize="1024 ,1024" />
         
     </ItemGroup>
 
