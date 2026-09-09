@@ -18,9 +18,10 @@
                        TextColor="Chocolate" />
 
                 <Label Text="{Binding HimnoSeleccionado.Nombre}"
-                       FontSize="25"
+                       FontSize="23"
                        FontAttributes="Bold"
                        HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
                        TextColor="Chocolate" />
             </VerticalStackLayout>
         </Frame>
@@ -39,7 +40,7 @@
                        TextColor="#3A2F1B"
                        HorizontalOptions="FillAndExpand"
                        VerticalOptions="Start"
-                       HorizontalTextAlignment="Center"
+                       HorizontalTextAlignment="Start"
                        VerticalTextAlignment="Start" />
             </Frame>
         </ScrollView>
@@ -47,7 +48,7 @@
         <!-- BARRA INFERIOR -->
         <Grid Grid.Row="2" ColumnDefinitions="*,Auto,*" Padding="5">
 
-            <!-- Botón Volver centrado respecto al himno -->
+            <!-- Botón Indice centrado respecto al himno -->
             <Button Text="←Índice"
                     Command="{Binding VolverCommand}"
                     BackgroundColor="#0077FF"
@@ -56,7 +57,7 @@
                     Padding="12"
                     FontAttributes="Bold"
                     FontSize="16"
-                    Grid.Column="1"
+                    Grid.Column="0"
                     HorizontalOptions="Center" />
 
             <!-- Botones A+ y A- a la derecha -->
@@ -64,13 +65,13 @@
                                    HorizontalOptions="End"
                                    Grid.Column="2">
                 <Button Text="A+" Command="{Binding AumentarLetraCommand}"
-                        WidthRequest="50" HeightRequest="43"
-                        FontSize="14" CornerRadius="20"
+                        WidthRequest="50" HeightRequest="50"
+                        FontSize="16" CornerRadius="20"
                         BackgroundColor="#0077FF" TextColor="White" 
                         FontAttributes="Bold"/>
                 <Button Text="A-" Command="{Binding DisminuirLetraCommand}"
-                        WidthRequest="50" HeightRequest="43"
-                        FontSize="14" CornerRadius="20"
+                        WidthRequest="50" HeightRequest="50"
+                        FontSize="16" CornerRadius="20"
                         BackgroundColor="#0077FF" TextColor="White" 
                         FontAttributes="Bold"/>
                 <!-- Compartir -->
