@@ -17,6 +17,10 @@ namespace MauiCurso.ViewModels
         [ObservableProperty]
         private int himnoId;
 
+        // ?? Nueva propiedad para el tamaño de letra
+        [ObservableProperty]
+        private double fontSize = 17;
+
         public DetalleHimnoViewModel(HimnoDataService himnoService)
         {
             _himnoService = himnoService;
@@ -43,12 +47,38 @@ namespace MauiCurso.ViewModels
             }
         }
 
-              
-
         [RelayCommand]
         private async Task Volver()
         {
             await Shell.Current.GoToAsync("..");
         }
+
+        // ?? Comandos para aumentar/disminuir letra
+        [RelayCommand]
+        private void AumentarLetra()
+        {
+            FontSize += 2;
+        }
+
+        [RelayCommand]
+        private void DisminuirLetra()
+        {
+            if (FontSize > 10)
+                FontSize -= 2;
+        }
+
+        //Nuevo comando para compartir himno
+        [RelayCommand]
+        public async Task CompartirHimno(Himno himno)
+        {
+            if (himno == null) return;
+
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = $"Himno #{himno.Numero}\n{himno.Nombre}\n\n{himno.Letra}",
+                Title = "Compartir himno"
+            });
+        }
+
     }
 }

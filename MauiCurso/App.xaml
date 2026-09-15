@@ -10,7 +10,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Converter global -->
-            <local:MayorQue198Converter x:Key="MayorQue198Converter" />
+            <local:MayorQue192Converter x:Key="MayorQue192Converter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -7,7 +7,6 @@
 
         <!-- HEADER -->
         <Frame Grid.Row="0"
-               
                CornerRadius="15"
                Padding="15"
                HasShadow="True">
@@ -19,9 +18,10 @@
                        TextColor="Chocolate" />
 
                 <Label Text="{Binding HimnoSeleccionado.Nombre}"
-                       FontSize="25"
+                       FontSize="23"
                        FontAttributes="Bold"
                        HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
                        TextColor="Chocolate" />
             </VerticalStackLayout>
         </Frame>
@@ -33,35 +33,58 @@
                    Padding="20"
                    HasShadow="True"
                    BorderColor="#D6C7A1">
-       <Label Text="{Binding HimnoSeleccionado.Letra}"
-       FontSize="17"
-       CharacterSpacing="0.5"
-       
-       LineBreakMode="WordWrap"
-       TextColor="#3A2F1B"
-       HorizontalOptions="FillAndExpand"
-       VerticalOptions="Start"
-       HorizontalTextAlignment="Center"
-       VerticalTextAlignment="Start" />
-
+                <Label Text="{Binding HimnoSeleccionado.Letra}"
+                       FontSize="{Binding FontSize}"
+                       CharacterSpacing="0.5"
+                       LineBreakMode="WordWrap"
+                       TextColor="#3A2F1B"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="Start"
+                       HorizontalTextAlignment="Start"
+                       VerticalTextAlignment="Start" />
             </Frame>
         </ScrollView>
 
-        <!-- BOTÓN VOLVER -->
-        <Frame Grid.Row="2"
-               BackgroundColor="Transparent"
-               Padding="0">
-            <Button Text="←Volver al índice"
+        <!-- BARRA INFERIOR -->
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto,*" Padding="5">
+
+            <!-- Botón Indice centrado respecto al himno -->
+            <Button Text="←Índice"
                     Command="{Binding VolverCommand}"
                     BackgroundColor="#0077FF"
                     TextColor="White"
-                    HorizontalOptions="Center"
                     CornerRadius="12"
-                    Padding="15"
+                    Padding="12"
                     FontAttributes="Bold"
-                    FontSize="16" />
-        </Frame>
+                    FontSize="16"
+                    Grid.Column="0"
+                    HorizontalOptions="Center" />
+
+            <!-- Botones A+ y A- a la derecha -->
+            <HorizontalStackLayout Spacing="5"
+                                   HorizontalOptions="End"
+                                   Grid.Column="2">
+                <Button Text="A+" Command="{Binding AumentarLetraCommand}"
+                        WidthRequest="50" HeightRequest="50"
+                        FontSize="16" CornerRadius="20"
+                        BackgroundColor="#0077FF" TextColor="White" 
+                        FontAttributes="Bold"/>
+                <Button Text="A-" Command="{Binding DisminuirLetraCommand}"
+                        WidthRequest="50" HeightRequest="50"
+                        FontSize="16" CornerRadius="20"
+                        BackgroundColor="#0077FF" TextColor="White" 
+                        FontAttributes="Bold"/>
+                <!-- Compartir -->
+                <ImageButton Source="share.png"
+             WidthRequest="50"
+             HeightRequest="50"
+             BackgroundColor="Transparent"
+                             
+             Command="{Binding CompartirHimnoCommand}"
+             CommandParameter="{Binding HimnoSeleccionado}" />
+
+            </HorizontalStackLayout>
+        </Grid>
 
     </Grid>
-
 </ContentPage>
